@@ -88,7 +88,7 @@ const Header = () => {
     };
     return (
         <>
-            <div className='promo'><h5 className='text-white text-center pt-5 pb-5'><b>The AI-Powered Talent Assessment Tool – Get your psychometric report!</b></h5></div>
+            <div className='promo '><h5 className='text-white text-center pt-5 pb-5'><b>The AI-Powered Talent Assessment Tool – Get your psychometric report!</b></h5></div>
             <header className="fixed w-full bg-white shadow-md header pt-3 pb-3">
                 <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-4">
                     <div className="flex justify-between h-16">
