@@ -1,26 +1,23 @@
 import Header from "@/components/Header/Header";
+import Script from "next/script";
 
 export default function Home() {
   return (
     <>
       <Header />
-    <head>
-      <script
+      <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-T1RMK1QQK9"
-      ></script>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+      ></Script>
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-            gtag('config', 'G-T1RMK1QQK9');
-          `,
-        }}
-      ></script>
-        </head>
+          gtag('config', 'G-T1RMK1QQK9');
+        `}
+      </Script>
     </>
   );
 }
