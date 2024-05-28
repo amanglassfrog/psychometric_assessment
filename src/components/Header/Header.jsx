@@ -76,7 +76,7 @@ const Header = () => {
         e.preventDefault();
         if (validate()) {
             try {
-                const response = await axios.post('https://sea-turtle-app-sm5l4.ondigitalocean.app/api/sendMail', formValues);
+                const response = await axios.post('https://sea-turtle-app-sm5l4.ondigitalocean.app/api/sendMail/psychometric', formValues);
                 setIsThankYouOpen(true);
 
                 console.log('Form submitted:', response.data);
