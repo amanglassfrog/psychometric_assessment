@@ -89,7 +89,7 @@ const Header = () => {
     return (
         <>
             <div className='promo '><h5 className='text-white text-center pt-5 pb-5'><b>The AI-Powered Talent Assessment Tool – Get your psychometric report!</b></h5></div>
-            <header className="fixed w-full bg-white shadow-md header pt-3 pb-3">
+            <header className=" w-full bg-white shadow-md header pt-3 pb-3">
                 <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-4">
                     <div className="flex justify-between h-16">
                         <div className="flex-shrink-0 flex items-center">
@@ -251,8 +251,8 @@ const Header = () => {
                     </nav>
                 </div>
             </header>
-            <section class="bg-white  min-h-[91vh] flex items-center">
-                <div class="grid max-w-screen-xl px-4  py-32 md:py-16 sm:py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+            <section class="bg-white  min-h-[79vh] flex items-center">
+                <div class="grid max-w-screen-xl px-4   mx-auto lg:gap-8 xl:gap-0  lg:grid-cols-12">
                     <div class="mr-auto place-self-center lg:col-span-7">
                         <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl ">AI powered psychometric
                             assessment platform</h1>
