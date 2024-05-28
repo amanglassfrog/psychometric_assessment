@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,6 +8,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 const Header = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isThankYouOpen, setIsThankYouOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [formValues, setFormValues] = useState({
         name: '',
@@ -75,17 +76,20 @@ const Header = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
+            setIsLoading(true);
             try {
                 const response = await axios.post('https://sea-turtle-app-sm5l4.ondigitalocean.app/api/sendMail/psychometric', formValues);
                 setIsThankYouOpen(true);
-
                 console.log('Form submitted:', response.data);
                 closeModal();
             } catch (error) {
                 console.error('There was an error submitting the form!', error);
+            } finally {
+                setIsLoading(false);
             }
         }
     };
+
     return (
         <>
             <div className='promo '><h5 className='text-white text-center pt-5 pb-5'><b>The AI-Powered Talent Assessment Tool – Get your psychometric report!</b></h5></div>
@@ -100,7 +104,6 @@ const Header = () => {
                         <div className="flex items-center">
                             <div className="hidden md:block">
                                 <nav className="flex space-x-4 items-center gap-8">
-
                                     <button
                                         onClick={openModal}
                                         className="hidden md:inline-flex items-center px-3 py-2 ml-4 border border-transparent roundedcustom shadow-sm text-sm font-medium bad"
@@ -116,7 +119,6 @@ const Header = () => {
                                                     </button>
                                                 </div>
                                                 <Image src="/logo.svg" height={200} width={200} />
-
                                                 <h2 className="text-xl font-bold mb-4">Book a Demo</h2>
                                                 <form onSubmit={handleSubmit} className="space-y-4">
                                                     <div>
@@ -181,13 +183,13 @@ const Header = () => {
                                                     <div className="flex justify-end">
                                                         <button
                                                             type="submit"
-                                                            className="px-4 py-2 bad "
+                                                            className="px-4 py-2 bad"
+                                                            disabled={isLoading}
                                                         >
-                                                            Submit
+                                                            {isLoading ? "Submitting..." : "Submit"}
                                                         </button>
                                                     </div>
                                                 </form>
-
                                             </div>
                                         </div>
                                     )}
@@ -245,20 +247,26 @@ const Header = () => {
                 </div>
                 <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
                     <nav className="px-2 pt-2 pb-3 space-y-1 sm:px-3 items-center">
-
                         <button className="block w-full text-center px-3 py-2 rounded-md text-base font-medium text-black bg-white hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
-                            Book a demo                        </button>
+                            Book a demo
+                        </button>
                     </nav>
                 </div>
             </header>
-            <section class="bg-white  min-h-[79vh] flex items-center">
-                <div class="grid max-w-screen-xl px-4   mx-auto lg:gap-8 xl:gap-0  lg:grid-cols-12">
-                    <div class="mr-auto place-self-center lg:col-span-7">
-                        <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl ">AI powered psychometric
-                            assessment platform</h1>
-                        <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl ">Try a free practice psychometric test from the 16 available types to help you prepare for your aptitude tests. Each test is crafted by accredited industry experts to simulate real exams used by top employers.</p>
-                        <a onClick={openModal} href="#" class="bad inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center  ">
-                            Book a demo                            <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            <section className="bg-white  min-h-[79vh] flex items-center">
+                <div className="grid max-w-screen-xl px-4 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12">
+                    <div className="mr-auto place-self-center lg:col-span-7">
+                        <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">
+                            AI powered psychometric assessment platform
+                        </h1>
+                        <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
+                            Try a free practice psychometric test from the 16 available types to help you prepare for your aptitude tests. Each test is crafted by accredited industry experts to simulate real exams used by top employers.
+                        </p>
+                        <a onClick={openModal} href="#" className="bad inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center">
+                            Book a demo
+                            <svg className="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                            </svg>
                         </a>
                         {isModalOpen && (
                             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -269,7 +277,6 @@ const Header = () => {
                                         </button>
                                     </div>
                                     <Image src="/logo.svg" height={200} width={200} />
-
                                     <h2 className="text-xl font-bold mb-4">Book a Demo</h2>
                                     <form onSubmit={handleSubmit} className="space-y-4">
                                         <div>
@@ -335,8 +342,9 @@ const Header = () => {
                                             <button
                                                 type="submit"
                                                 className="px-4 py-2 bad"
+                                                disabled={isLoading}
                                             >
-                                                Submit
+                                                {isLoading ? "Submitting..." : "Submit"}
                                             </button>
                                         </div>
                                     </form>
@@ -355,8 +363,9 @@ const Header = () => {
                                 </div>
                             </div>
                         )}
-                        <a onClick={openModal} href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100  ">
-                            Try for free                        </a>
+                        <a onClick={openModal} href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
+                            Try for free
+                        </a>
                         {isModalOpen && (
                             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                                 <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
@@ -366,7 +375,6 @@ const Header = () => {
                                         </button>
                                     </div>
                                     <Image src="/logo.svg" height={200} width={200} />
-
                                     <h2 className="text-xl font-bold mb-4">Book a Demo</h2>
                                     <form onSubmit={handleSubmit} className="space-y-4">
                                         <div>
@@ -432,8 +440,9 @@ const Header = () => {
                                             <button
                                                 type="submit"
                                                 className="px-4 py-2 bad"
+                                                disabled={isLoading}
                                             >
-                                                Submit
+                                                {isLoading ? "Submitting..." : "Submit"}
                                             </button>
                                         </div>
                                     </form>
@@ -455,10 +464,9 @@ const Header = () => {
                         <div className='pt-5 flex gap-2'>
                             <span className='flex items-center gap-2 line'><svg className='icon1' viewBox="0 0 576 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0 432c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V256H0v176zm192-68c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-40zm-128 0c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM576 80v48H0V80c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48z"></path></svg><b>No credit card required</b></span>
                             <span className='flex items-center gap-2'><svg className='icon2' viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M400 480H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48v352c0 26.51-21.49 48-48 48zm-204.686-98.059l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.248-16.379-6.249-22.628 0L184 302.745l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.25 16.379 6.25 22.628.001z"></path></svg><b>GDPR Compliant</b></span>
-
                         </div>
                     </div>
-                    <div class=" lg:mt-0 lg:col-span-5 lg:flex">
+                    <div className="lg:mt-0 lg:col-span-5 lg:flex">
                         <img src="/hero.png" alt="mockup" />
                     </div>
                 </div>
