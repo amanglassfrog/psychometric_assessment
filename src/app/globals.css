@@ -23,7 +23,7 @@ body {
 }
 
 .bad {
-  background: #de3439;
+  background: #000e4d;
   color: white;
   padding: 15px 30px;
   border-radius: 6px;
@@ -31,13 +31,13 @@ body {
 }
 
 .promo {
-  background-color: #de3439;
+  background-color: #000e4d;
 }
 
 .icon1 {
   height: 1rem;
   width: 1rem;
-  color: #de3439;
+  color: #000e4d;
 }
 
 .icon2 {
