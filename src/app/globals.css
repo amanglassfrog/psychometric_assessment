@@ -18,16 +18,42 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.bad {
+  background: #de3439;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 6px;
+  border: 0px;
+}
+
+.promo {
+  background-color: #de3439;
+}
+
+.icon1 {
+  height: 1rem;
+  width: 1rem;
+  color: #de3439;
+}
+
+.icon2 {
+  height: 1rem;
+  width: 1rem;
+  color: #29cd1f;
+}
+
+.line {
+  border-right: 3px solid;
+  padding-right: 4px;
 }
